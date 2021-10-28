@@ -36,7 +36,9 @@ class PunchMixer<CupType> {
       }
     }
   }
-  public vend(): CupType;
+  public vend(): CupType {
+    return {} as CupType;
+  }
 }
 
 // (if you want to try this without classes, you can drop the new below,

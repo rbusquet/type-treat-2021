@@ -4,7 +4,7 @@
 
 import { cookPumpkinSoup } from "type-or-treat";
 
-const pumpkins = [
+const pumpkins: Pumpkin[] = [
   { color: "green", soundWhenHit: "dull thud" },
   { color: "purple", soundWhenHit: "echo-y" },
   { color: "green", soundWhenHit: "dull thud" },
@@ -20,15 +20,15 @@ const pumpkins = [
 
 type UnderripePumpkin = {
   soundWhenHit: "dull thud";
-  color: string;
+  color: "green";
 };
 type RipePumpkin = {
   soundWhenHit: "echo-y";
-  color: string;
+  color: "purple" | "orange" | "blue";
 };
 type OverripePumpkin = {
   soundWhenHit: "squishy";
-  color: string;
+  color: "white";
 };
 
 // We'll use a type union to say that a pumpkin can be any of these possible types
