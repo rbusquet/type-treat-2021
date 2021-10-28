@@ -18,7 +18,7 @@ type Length<T extends string> = T extends `${Forbidden}${string}` ? never : T;
 // inspiration from https://twitter.com/danvdk/status/1453503071087169536
 type Digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
 
-function req<N extends "0" | `${number}${number | ""}${Unit}`>(
+function req<N extends "0" | `${Digit}${number | ""}${Unit}`>(
   input: Length<N>
 ) {
   // Remove NaN, minus values,
@@ -28,9 +28,13 @@ function req<N extends "0" | `${number}${number | ""}${Unit}`>(
 // To get started, here's some examples which should always fail
 
 const shouldFail = () => {
+  // @ts-expect-error
   req("");
+  // @ts-expect-error
   req("apx");
+  // @ts-expect-error
   req("rem");
+  // @ts-expect-error
   req("abc");
 };
 
@@ -72,12 +76,15 @@ const thingsWhichComplicateTheMatter = () => {
 
   // Minus numbers don't make sense in our case, can you ensure that
   // it only accepts positive numbers?
-  req("-12 cm");
+  // @ts-expect-error
+  req("-12cm");
 
   // It is possible to raise an error with these two, can you
   // figure out how? We know of two implementations, one simpler with
   // an interesting trade-off, and another which accurately can catch these
   // cases without that trade-off.
+  // @ts-expect-error
   req(`${Infinity}cm`);
+  // @ts-expect-error
   req(`${NaN}cm`);
 };
