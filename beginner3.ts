@@ -15,7 +15,12 @@ type Length<T extends string> = T extends `${Forbidden}${string}` ? never : T;
 // Your API function, we'll be using the input to this function
 // to validate if your type is right or not
 
-function req<N extends "0" | `${number}${Unit}`>(input: Length<N>) {
+// inspiration from https://twitter.com/danvdk/status/1453503071087169536
+type Digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
+
+function req<N extends "0" | `${number}${number | ""}${Unit}`>(
+  input: Length<N>
+) {
   // Remove NaN, minus values,
   // Do some work
 }
